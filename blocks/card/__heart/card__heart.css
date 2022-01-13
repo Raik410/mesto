@@ -1,0 +1,7 @@
+.card__heart {
+  background-image: url(../../../image/Group.svg);
+  min-width: 22px;
+  height: 19px;
+  background-size: cover;
+  margin-right: 30px;
+}
