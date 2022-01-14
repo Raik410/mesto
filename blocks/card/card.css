@@ -1,10 +1,9 @@
 .card {
-  border-radius: 5%;
-  background-image: url(../../image/kirill-pershin-1088404-unsplash.jpg);
-  height: calc(280px + 79px);
-  background-size: cover;
+  border-radius: 10px;
+  background-size: contain;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   overflow: hidden;
+  flex-wrap: wrap;
 }

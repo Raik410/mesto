@@ -4,4 +4,10 @@
   height: 19px;
   background-size: cover;
   margin-right: 30px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+.card__heart:hover {
+  opacity: 0.6;
 }

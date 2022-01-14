@@ -3,6 +3,18 @@
   background-size: cover;
   width: 24px;
   height: 24px;
-  align-self: flex-start;
-  margin-top: 33px;
+  align-self: center;
+  margin-left: 18px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__editBotton {
+    margin-left: 10px;
+  }
+}
+
+.profile__editBotton:hover {
+  opacity: 0.6;
 }
