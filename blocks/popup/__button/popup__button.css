@@ -1,0 +1,11 @@
+.popup__button {
+  background-color: black;
+  border: 0;
+  padding: 0px;
+  transition: opacity 0.3s linear;
+  border-radius: 2px;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
+}

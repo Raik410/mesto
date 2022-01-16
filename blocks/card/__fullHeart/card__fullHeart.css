@@ -1,0 +1,9 @@
+.card__fullHeart {
+  background-image: url(../../../image/Union.svg);
+  min-width: 22px;
+  height: 19px;
+  background-size: cover;
+  margin-right: 30px;
+  transition: opacity 0.3s linear;
+  cursor: pointer;
+}
