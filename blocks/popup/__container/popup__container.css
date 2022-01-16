@@ -10,7 +10,6 @@
   position: relative;
 }
 
-
 @media screen and (max-width: 767px) {
   .popup__container {
     min-width: calc(282px - 18px * 2);
