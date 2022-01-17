@@ -2,12 +2,21 @@ const ProfileEditBotton = document.querySelector('.profile__editBotton');
 const popup = document.querySelector('.popup');
 const popupclosebtn = document.querySelector('.popup__closeBtn');
 const cardHearts = document.querySelectorAll('.card__heart');
+let profile = document.querySelector('.profile__intro')
+let name = profile.querySelector('.profile__title')
+let job = profile.querySelector('.profile__subtitle')
+let formElement = document.querySelector('.popup__form')
+let nameInput = formElement.querySelector('.popup__inputName')
+let jobInput = formElement.querySelector('.popup__inputJob')
+let btnSubmit = formElement.querySelector('.popup__button')
 
 // Функция для открытия popup
 ProfileEditBotton.addEventListener('click', openPopup);
 
 function openPopup() {
   popup.classList.add('popup__open');
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
 }
 
 // Функция для закрытия popup
@@ -38,20 +47,9 @@ for (let cardHeart of cardHearts) {
   }
 }
 
-// Находим форму в DOM
-let formElement = document.querySelector('.popup__form')
-// Находим поля формы в DOM
-let nameInput = formElement.querySelector('.popup__inputName')
-let jobInput = formElement.querySelector('.popup__inputJob')
-let btnSubmit = formElement.querySelector('.popup__button')
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  let profile = document.querySelector('.profile__intro')
-  let name = profile.querySelector('.profile__title')
-  let job = profile.querySelector('.profile__subtitle')
+
 
   if (nameInput.value === '' && jobInput.value === '') {
     btnSubmit.setAttribute('disabled', true); // Делаем чекбокс неактивным.
@@ -60,6 +58,7 @@ function formSubmitHandler(evt) {
   btnSubmit.removeAttribute('disabled', true);
   name.textContent = nameInput.value
   job.textContent = jobInput.value
+
   closePopup();
 }
 }
