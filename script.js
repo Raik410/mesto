@@ -60,6 +60,7 @@ function formSubmitHandler(evt) {
   btnSubmit.removeAttribute('disabled', true);
   name.textContent = nameInput.value
   job.textContent = jobInput.value
+  closePopup();
 }
 }
 
