@@ -1,6 +1,6 @@
-.popup__inputName {
+.popup__input-name {
   border: 0;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   min-height: 27px;
   font-size: 14px;
   line-height: 17px;
@@ -12,7 +12,11 @@
 }
 
 @media screen and (max-width: 767px) {
-  .popup__inputName {
+  .popup__input-name {
     min-height: 30px;
   }
+}
+
+.popup__input-name:nth-child(2) {
+  margin-bottom: 48px;
 }

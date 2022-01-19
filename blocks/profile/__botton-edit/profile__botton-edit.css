@@ -1,4 +1,4 @@
-.profile__editBotton {
+.profile__botton-edit {
   background-image: url(../../../image/Edit\ Button.svg);
   background-size: cover;
   width: 24px;
@@ -7,14 +7,18 @@
   margin-left: 18px;
   transition: opacity 0.3s linear;
   cursor: pointer;
+  background-color: black;
+  border: 0;
 }
 
 @media screen and (max-width: 767px) {
-  .profile__editBotton {
+  .profile__botton-edit {
     margin-left: 10px;
+    width: 18px;
+    height: 18px;
   }
 }
 
-.profile__editBotton:hover {
+.profile__botton-edit:hover {
   opacity: 0.6;
 }

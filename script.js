@@ -1,13 +1,13 @@
-const ProfileEditBotton = document.querySelector('.profile__editBotton');
+const ProfileEditBotton = document.querySelector('.profile__botton-edit');
 const popup = document.querySelector('.popup');
-const popupclosebtn = document.querySelector('.popup__closeBtn');
+const popupclosebtn = document.querySelector('.popup__botton-close');
 const cardHearts = document.querySelectorAll('.card__heart');
 let profile = document.querySelector('.profile__intro')
 let name = profile.querySelector('.profile__title')
 let job = profile.querySelector('.profile__subtitle')
 let formElement = document.querySelector('.popup__form')
-let nameInput = formElement.querySelector('.popup__inputName')
-let jobInput = formElement.querySelector('.popup__inputJob')
+let nameInput = formElement.querySelector('.popup__input-name')
+let jobInput = formElement.querySelector('.popup__input-name_job')
 let btnSubmit = formElement.querySelector('.popup__button')
 
 // Функция для открытия popup
@@ -43,7 +43,7 @@ document.addEventListener('keydown', function (e) {
 // Можно лайкать любые карточки
 for (let cardHeart of cardHearts) {
   cardHeart.onclick = function () {
-    cardHeart.classList.toggle('card__fullHeart');
+    cardHeart.classList.toggle('card__heart_active');
   }
 }
 
@@ -52,12 +52,12 @@ function formSubmitHandler(evt) {
 
 
   if (nameInput.value === '' && jobInput.value === '') {
-    btnSubmit.setAttribute('disabled', true); // Делаем чекбокс неактивным.
+    btnSubmit.setAttribute('disabled', true);
   }
   else if (nameInput.value !== '' && jobInput.value !== '') {
   btnSubmit.removeAttribute('disabled', true);
-  name.textContent = nameInput.value
-  job.textContent = jobInput.value
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
 
   closePopup();
 }
