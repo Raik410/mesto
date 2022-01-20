@@ -7,7 +7,7 @@ let name = profile.querySelector('.profile__title')
 let job = profile.querySelector('.profile__subtitle')
 let formElement = document.querySelector('.popup__form')
 let nameInput = formElement.querySelector('.popup__input-name')
-let jobInput = formElement.querySelector('.popup__input-name_job')
+let jobInput = formElement.querySelector('.popup__input-name_job_value')
 let btnSubmit = formElement.querySelector('.popup__button')
 
 // Функция для открытия popup
