@@ -2,7 +2,8 @@
   background-image: url(../../../image/Group.svg);
   min-width: 22px;
   height: 19px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   margin-right: 30px;
   transition: opacity 0.3s linear;
   cursor: pointer;
