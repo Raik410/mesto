@@ -43,6 +43,7 @@ const initialCards = [
 ];
 
 
+
 // Функция для открытия popup
 ProfileEditBotton.addEventListener('click', openPopup);
 
@@ -58,21 +59,30 @@ function closePopup() {
   popup.classList.remove('popup__open');
 }
 
-// Функция для открытия popup-image
+const popupAddCard = document.querySelector('.popup-image');
+addButtonImage.addEventListener('click' , function(){
+  popupAddCard.classList.add('popup__open');
+});
 
-addButtonImage.addEventListener('click' , openPopupImage);
+const popupAddCardExit = popupAddCard.querySelector('.popup__botton-close');
+popupAddCardExit.addEventListener('click', function () {
+  popupAddCard.classList.remove('popup__open');
+})
 
-function openPopupImage() {
-  popupImage.classList.add('popup__open');
-}
-
-// Функция для закрытия popup-image
-popupclosebtn.addEventListener('click', closePopupImage);
-
-function closePopupImage() {
-  popupImage.classList.remove('popup__open');
-}
-
+const submitButtonCreateCard = popupAddCard.querySelector('.popup__button');
+submitButtonCreateCard.addEventListener('click', function(event){
+  event.preventDefault();
+  const cardTemplate = document.querySelector('.template').content;
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const titleValue = popupAddCard.querySelector('.popup__input-name');
+  const srcValue = popupAddCard.querySelector('.popup__input-name_type_user-job');
+  cardElement.querySelector('.card__title').textContent = titleValue.value;
+  cardElement.querySelector('.card__image').src = srcValue.value;
+  cardElement.querySelector('.card__heart').addEventListener('click', function(evt){
+    evt.target.classList.toggle('card__heart_active');
+  });
+  sectionCards.append(cardElement);
+})
 
 // Закрывает popup кликая на фон
 popup.addEventListener('click', function (event) {
@@ -88,20 +98,8 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-// Можно лайкать любые карточки
-for (let cardHeart of cardHearts) {
-  cardHeart.onclick = function () {
-    cardHeart.classList.toggle('card__heart_active');
-  }
-}
-
-
-
-
 function formSubmitHandler(evt) {
   evt.preventDefault();
-
-
   if (nameInput.value === '' && jobInput.value === '') {
     btnSubmit.setAttribute('disabled', true);
   }
@@ -109,28 +107,10 @@ function formSubmitHandler(evt) {
   btnSubmit.removeAttribute('disabled', true);
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
-
   closePopup();
 }
 }
-
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
 formElement.addEventListener('submit', formSubmitHandler);
-
-
-function addCard(titleValue, imgValue) {
-const cardTemplate = document.querySelector('.template').content;
-const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-cardElement.querySelector('.card__heart').addEventListener('click', function(evt){
-  evt.target.classList.toggle('card__heart_active');
-});
-cardElement.querySelector('.button-delete').addEventListener('click', function(evt){
-  evt.target.remove();
-})
-sectionCards.append(cardElement);
-}
-
 
 initialCards.forEach(function (item) {
   const cardTemplate = document.querySelector('.template').content;

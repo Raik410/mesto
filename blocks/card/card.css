@@ -2,10 +2,10 @@
   border-radius: 10px;
   background-size: contain;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
   overflow: hidden;
   flex-wrap: wrap;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: 282px;
+  justify-self: center;
 }
