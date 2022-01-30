@@ -65,9 +65,11 @@ addButtonImage.addEventListener('click' , function(){
 });
 
 const popupAddCardExit = popupAddCard.querySelector('.popup__botton-close');
-popupAddCardExit.addEventListener('click', function () {
+popupAddCardExit.addEventListener('click', popupImgExit);
+
+function popupImgExit() {
   popupAddCard.classList.remove('popup__open');
-})
+}
 
 const submitButtonCreateCard = popupAddCard.querySelector('.popup__button');
 submitButtonCreateCard.addEventListener('click', function(event){
@@ -81,7 +83,8 @@ submitButtonCreateCard.addEventListener('click', function(event){
   cardElement.querySelector('.card__heart').addEventListener('click', function(evt){
     evt.target.classList.toggle('card__heart_active');
   });
-  sectionCards.append(cardElement);
+  sectionCards.prepend(cardElement);
+  popupImgExit();
 })
 
 // Закрывает popup кликая на фон
