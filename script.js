@@ -13,6 +13,7 @@ const btnSubmit = formContainer.querySelector('.popup__button');
 const popupAdd = document.querySelector('.popup-image');
 const sectionCards = document.querySelector('.cards');
 
+
 const initialCards = [
   {
     name: 'Архыз',
