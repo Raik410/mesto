@@ -8,4 +8,5 @@
   white-space: nowrap;
   max-width: 282px;
   justify-self: center;
+  position: relative;
 }
