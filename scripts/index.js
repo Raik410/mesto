@@ -1,4 +1,4 @@
-const ProfileEditBotton = document.querySelector('.profile__botton-edit');
+const profileEditBotton = document.querySelector('.profile__botton-edit');
 const popupEdit = document.querySelector('.popup');
 const popupclosebtnEdit = document.querySelector('.popup__botton-close');
 const cardHearts = document.querySelectorAll('.card__heart');
@@ -12,8 +12,6 @@ const jobInput = formContainer.querySelector('.popup__input-name_type_user-job')
 const btnSubmit = formContainer.querySelector('.popup__button');
 const popupAdd = document.querySelector('.popup-image');
 const sectionCards = document.querySelector('.cards');
-
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -40,9 +38,12 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+function openPopup(popup) {
+  popup.classList.add('popup__open');
+}
 
 // Добавляем обработчик к функции открытия попапа
-ProfileEditBotton.addEventListener('click', openPopup);
+profileEditBotton.addEventListener('click', openPopup);
 // Открывает попап
 
 function openPopup() {
@@ -61,7 +62,6 @@ const popupAddCard = document.querySelector('.popup-image');
 addButtonImage.addEventListener('click' , function(){
   popupAddCard.classList.add('popup__open');
 });
-
 const popupAddCardExit = popupAddCard.querySelector('.popup__botton-close');
 popupAddCardExit.addEventListener('click', popupImgExit);
 
