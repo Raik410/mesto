@@ -4,7 +4,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 48px;
-  display: flex;
   flex-direction: row;
   text-overflow: ellipsis;
   white-space: nowrap;
