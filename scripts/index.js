@@ -1,5 +1,5 @@
-// На счет переноса элементов из-за большого количества символов в блоке profile, почему-то git pages не сохраняет мои значения max-width: 250px; в profile__titile
-// можете посмотреть у меня в гитхабе, там всё ок, странно то, что в liveserver показывает всё нормально :thinking:
+// Спасибо за подробное ревью, вы очень помогли с понимаем всей этой кучи теории <3
+// Вы не знаете будет ли разбор данной проектной? Допустим в тренажере
 const profileEditBotton = document.querySelector('.profile__botton-edit');
 const popupEdit = document.querySelector('.popup-edit');
 const popupclosebtnEdit = document.querySelector('.popup__botton-close');
