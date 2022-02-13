@@ -5,10 +5,10 @@
   font-size: 14px;
   line-height: 17px;
   outline: none;
-  margin-bottom: 30px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  margin-bottom: 5px;
 }
 
 @media screen and (max-width: 767px) {
@@ -17,6 +17,10 @@
   }
 }
 
-.popup__input-name:nth-child(2) {
+/* .popup__input-name:nth-child(2) {
   margin-bottom: 48px;
-}
+} */
+
+/* .popup__input-name:invalid {
+  border-bottom: 1px solid #FF0000;
+} */
