@@ -89,7 +89,7 @@ const validationConfig = {
   inactiveSubmitButtonSelectorText: 'popup__button-text_disabled',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input-name_type-error',
-  errorClass: 'popup__form_input-error-active'
+  errorClass: 'popup__input-error-active'
 };
 
 enableValidation(validationConfig);

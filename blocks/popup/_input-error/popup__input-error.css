@@ -1,4 +1,4 @@
-.popup__form_input-error {
+.popup__input-error {
   color: red;
   opacity: 0;
   font-size: 12px;
@@ -10,7 +10,7 @@
   margin-bottom: 30px;
 }
 
-.popup__form_input-error:last-of-type {
+.popup__input-error:last-of-type {
   margin-bottom: 47px;
 }
 
