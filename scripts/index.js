@@ -1,9 +1,7 @@
-// Спасибо за подробное ревью, вы очень помогли с понимаем всей этой кучи теории <3
-// Вы не знаете будет ли разбор данной проектной? Допустим в тренажере
+
 const profileEditBotton = document.querySelector('.profile__botton-edit');
 const popupEdit = document.querySelector('.popup-edit');
 const popupclosebtnEdit = document.querySelector('.popup__botton-close');
-const cardHearts = document.querySelectorAll('.card__heart');
 const profileContainer = document.querySelector('.profile__intro');
 const nameProfile = profileContainer.querySelector('.profile__title');
 const jobProfile = profileContainer.querySelector('.profile__subtitle');
@@ -26,39 +24,52 @@ const imagePopupPreview = popupAddCards.querySelector('.popup__image')
 const titlePopupPreview = popupAddCards.querySelector('.popup__text')
 const titleInputValue = popupAddCard.querySelector('.popup__input-name')
 const descriptionInputValue = popupAddCard.querySelector('.popup__input-name_type_user-job')
+const submitButtonCreateCardText = popupAddCard.querySelector('.popup__button-text');
 
 // Делаем шаблон для всех popup (Открытия попап)
 function openPopup(popup) {
   popup.classList.add('popup__open');
+  document.addEventListener('keydown', closeByEscape);
 }
 // Делаем шаблон для всех popup (Закрытие попап)
 function closePopup(popup) {
   popup.classList.remove('popup__open');
+  document.removeEventListener('keydown', closeByEscape);
 }
-// Вопрос, как сделать так чтобы попап не закрывался если случайно кликнул на фон и перенес курсор мыши на сам попап-контейнер
-function closePopupBackground(popup) {
-  popup.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popup);
-    }
-  })
+
+const popups = document.querySelectorAll('.popup')
+
+popups.forEach((popup) => {
+    popup.addEventListener('mouseup', (evt) => {
+        if (evt.target.classList.contains('popup__open')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__botton-close')) {
+          closePopup(popup)
+        }
+    })
+})
+
+
+// function closePopupSpace(evt) {
+//   if (evt.target === evt.currentTarget) {
+//     const openedPopup = document.querySelector('.popup__open')
+//     closePopup(openedPopup)
+//   }
+// }
+
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup__open')
+    closePopup(openedPopup)
+  }
 }
-function closePopupOnKey(popup) {
-  document.addEventListener('keydown', function(event) {
-    const key = event.key;
-    if (key === "Escape") {
-      closePopup(popup)
-    }
-  });
-};
 
 // Открываем popupEdit
 profileEditBotton.addEventListener('click', function(){
   openPopup(popupEdit);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  closePopupBackground(popupEdit);
-  closePopupOnKey(popupEdit)
 });
 // Закрываем popupEdit
 popupclosebtnEdit.addEventListener('click', function(){
@@ -67,13 +78,11 @@ popupclosebtnEdit.addEventListener('click', function(){
 // Открываем popupAdd
 addButtonImage.addEventListener('click', function(){
   openPopup(popupAdd);
-  closePopupBackground(popupAdd);
-  closePopupOnKey(popupAdd)
 })
 // Закрываем popupAdd
-popupclosebtnAddCard.addEventListener('click', function(){
-  closePopup(popupAdd);
-})
+// popupclosebtnAddCard.addEventListener('click', function(){
+//   closePopup(popupAdd);
+// })
 // Функция создания карточки
 function createCard (name, link) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -90,15 +99,14 @@ function createCard (name, link) {
   });
   cardImage.addEventListener('click', function(){  // Попап для открытия попапа прямо с карточки
     openPopup(popupAddCards);
-    closePopupBackground(popupAddCards);
-    closePopupOnKey(popupAddCards)
+    // closePopupBackground(popupAddCards);
     imagePopupPreview.src = link; // Присваиваем картинке попапа аргумент функции
     titlePopupPreview.textContent = name; // Присваиваем тексту попапа аргумент функции
     imagePopupPreview.alt = name; // Присваиваем альт попапа аргунт функции
   })
-  popupBtnAddCardsClose.addEventListener('click', function(){
-    closePopup(popupAddCards);
-  })
+  // popupBtnAddCardsClose.addEventListener('click', function(){
+  //   closePopup(popupAddCards);
+  // })
   return cardElement; // Делаем карточку видимой
 }
 
@@ -112,6 +120,11 @@ function handleCardFormSubmit(evt) {
   sectionCards.prepend(createCard(titleInputValue.value, descriptionInputValue.value));
   closePopup(popupAdd);
   popupFormSubmitAddCard.reset();
+  if (titleInputValue.value === '' || descriptionInputValue.value === '') {
+    submitButtonCreateCard.setAttribute('disabled', '')
+    submitButtonCreateCard.classList.add(validationConfig.inactiveButtonClass);
+    submitButtonCreateCardText.classList.add(validationConfig.inactiveSubmitButtonSelectorText);
+  }
 }
 
 function handleProfileFormSubmit(evt) {
