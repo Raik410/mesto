@@ -40,7 +40,7 @@ function closePopup(popup) {
 const popups = document.querySelectorAll('.popup')
 
 popups.forEach((popup) => {
-    popup.addEventListener('mouseup', (evt) => {
+    popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup__open')) {
             closePopup(popup)
         }
@@ -71,10 +71,7 @@ profileEditBotton.addEventListener('click', function(){
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 });
-// Закрываем popupEdit
-popupclosebtnEdit.addEventListener('click', function(){
-  closePopup(popupEdit);
-})
+
 // Открываем popupAdd
 addButtonImage.addEventListener('click', function(){
   openPopup(popupAdd);
@@ -104,9 +101,6 @@ function createCard (name, link) {
     titlePopupPreview.textContent = name; // Присваиваем тексту попапа аргумент функции
     imagePopupPreview.alt = name; // Присваиваем альт попапа аргунт функции
   })
-  // popupBtnAddCardsClose.addEventListener('click', function(){
-  //   closePopup(popupAddCards);
-  // })
   return cardElement; // Делаем карточку видимой
 }
 
@@ -120,11 +114,9 @@ function handleCardFormSubmit(evt) {
   sectionCards.prepend(createCard(titleInputValue.value, descriptionInputValue.value));
   closePopup(popupAdd);
   popupFormSubmitAddCard.reset();
-  if (titleInputValue.value === '' || descriptionInputValue.value === '') {
     submitButtonCreateCard.setAttribute('disabled', '')
     submitButtonCreateCard.classList.add(validationConfig.inactiveButtonClass);
     submitButtonCreateCardText.classList.add(validationConfig.inactiveSubmitButtonSelectorText);
-  }
 }
 
 function handleProfileFormSubmit(evt) {
