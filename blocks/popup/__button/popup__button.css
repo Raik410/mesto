@@ -5,6 +5,7 @@
   transition: opacity 0.3s linear;
   border-radius: 2px;
   cursor: pointer;
+  transition-property: background-color;
 }
 
 .popup__button:hover {
