@@ -38,6 +38,7 @@ const submitButtonCreateCardText = popupAddCard.querySelector(
 function openPopup(popup) {
   popup.classList.add("popup__open");
   document.addEventListener("keydown", closeByEscape);
+  popupFormSubmitAddCard.reset();
 }
 // Делаем шаблон для всех popup (Закрытие попап)
 function closePopup(popup) {
