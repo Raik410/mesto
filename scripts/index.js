@@ -36,21 +36,25 @@ const validationConfig = {
   errorClass: 'popup__input-error-active'
 };
 
+function createCard(text, image) {
+  const card = new Card(text, image, '.template')
+  const cardElement = card.renderCard();
+  return cardElement;
+}
+
 
 const addCard = card => {
   sectionCards.prepend(card);
 }
 
 initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link, '.template');
-  const cardElement = card.renderCard();
-  addCard(cardElement);
+  const card = createCard(item.name, item.link);
+  addCard(card);
 })
 
 function openPopup(popup) {
   popup.classList.add("popup__open");
   document.addEventListener("keydown", closeByEscape);
-  popupHandleCardForm.reset();
 }
 // Делаем шаблон для всех popup (Закрытие попап)
 function closePopup(popup) {
@@ -60,10 +64,7 @@ function closePopup(popup) {
 
 popups.forEach((popup) => {
   popup.addEventListener("mousedown", (evt) => {
-    if (evt.target.classList.contains("popup__open")) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains("popup__botton-close")) {
+    if (evt.target.classList.contains("popup__open") || evt.target.classList.contains("popup__botton-close")) {
       closePopup(popup);
     }
   });
@@ -77,12 +78,14 @@ function closeByEscape(evt) {
 }
 
 editButton.addEventListener("click", function () {
-  openPopup(popupEdit);
   popupEditNameInput.value = profileTitle.textContent;
   popupEditJobInput.value = profileSubtitle.textContent;
+  openPopup(popupEdit);
 });
 
 handleCardButton.addEventListener('click', function() {
+  popupHandleCardForm.reset();
+  addCardValidator.toggleButtonState();
   openPopup(popupHandleCard);
 })
 
@@ -97,10 +100,8 @@ popupEditForm.addEventListener('submit', handleProfileFormSubmit);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  const card = new Card(popupHandleCardNameInput.value, popupHandleCardLinkInput.value, '.template');
-  const cardElement = card.renderCard();
-  addCard(cardElement);
-  addCardValidator.disableSubmitButton()
+  const card = createCard(popupHandleCardNameInput.value, popupHandleCardLinkInput.value);
+  addCard(card);
   closePopup(popupHandleCard);
 }
 
