@@ -6,7 +6,7 @@
   position: absolute;
   right: -37px;
   padding: 0;
-  background: url(../../../image/Close\ Icon.svg);
+  background: url(../../../image/CloseIcon.svg);
   transition: opacity 0.3s linear;
   cursor: pointer;
 }

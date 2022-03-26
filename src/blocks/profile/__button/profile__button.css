@@ -1,5 +1,5 @@
 .profile__button {
-  background-image: url(../../../image/Rectangle\ \(1\).svg);
+  background-image: url(../../../image/BorderButtonAddDesc.svg);
   background-size: cover;
   width: 150px;
   height: 50px;
@@ -15,7 +15,7 @@
   .profile__button {
     width: 282px;
     background-size: cover;
-    background-image: url(../../../image/Big\ bottom.svg);
+    background-image: url(../../../image/BorderButtonAdd.svg);
   }
 }
 

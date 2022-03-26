@@ -1,3 +1,4 @@
+
 import './index.css';
 import { FormValidator } from "../scripts/components/FormValidator.js";
 import { Card } from "../scripts/components/Card.js";
@@ -18,6 +19,9 @@ import { Popup } from "../scripts/components/Popup.js";
 import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
+import importImage from '../scripts/utils/importImage.js'
+
+
 
 const popupClass = new Popup(".popup-edit");
 popupClass.setEventListeners();
