@@ -1,9 +1,9 @@
-import {popupInCardText, popupIncardImage, openPopup, popupInCard} from './index.js'
 export class Card {
-  constructor(text, image, cardTemplateSelector) {
+  constructor(text, image, cardTemplateSelector, handleCardClick) {
     this._text = text;
     this._image = image;
     this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardItem = document
@@ -34,13 +34,13 @@ export class Card {
   _deleteCard() {
     this._elementDeleteCard.closest('.card').remove();
   }
-  _openPopupCard() {
-    popupInCardText.textContent = this._text;
-    popupIncardImage.src = this._image;
-    popupIncardImage.alt = this._text;
+  // _openPopupCard() {
+  //   popupInCardText.textContent = this._text;
+  //   popupIncardImage.src = this._image;
+  //   popupIncardImage.alt = this._text;
 
-    openPopup(popupInCard);
-  }
+  //   openPopup(popupInCard);
+  // }
   _setEventListeners() {
     this._elementHeart.addEventListener('click', () => {
       this._cardLike();
@@ -49,7 +49,7 @@ export class Card {
       this._deleteCard();
     })
     this._elementImage.addEventListener('click', () => {
-      this._openPopupCard();
+      this._handleCardClick(this._text, this._image);
     })
   }
 }
