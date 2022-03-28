@@ -16,4 +16,7 @@ export class Section {
       this._renderer(item);
     });
   }
+  prependItem(element) {
+    this._container.prepend(element);
+  }
 }
