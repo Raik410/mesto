@@ -14,22 +14,20 @@ import {
   validationConfig,
   allCards,
 } from "../scripts/utils/constant.js";
-import { Popup } from "../scripts/components/Popup.js";
 import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
-import importImage from "../scripts/utils/importImage.js";
 
 handleCardButton.addEventListener("click", function () {
   addCardValidator.toggleButtonState();
-  handleSubmitFormAddCard.open();
+  cardPopup.open();
 });
 
-const PopupWithImageClass = new PopupWithImage(".popup-add-card");
-PopupWithImageClass.setEventListeners();
+const imagePopup = new PopupWithImage(".popup-add-card");
+imagePopup.setEventListeners();
 
 function handleCardClick(text, image) {
-  PopupWithImageClass.open(text, image);
+  imagePopup.open(text, image);
 }
 
 function createCard(text, image) {
@@ -43,26 +41,26 @@ const userInfoEx = new UserInfo({
   jobSelector: ".profile__subtitle",
 });
 
-const handleSumbutForm = new PopupWithForm(".popup-edit", {
+const profilePopup = new PopupWithForm(".popup-edit", {
   submitEvent: (formData) => {
     userInfoEx.setUserInfo({
       name: formData.username,
       job: formData.about,
     });
-    handleSumbutForm.close();
+    profilePopup.close();
   },
 });
-handleSumbutForm.setEventListeners();
+profilePopup.setEventListeners();
 
-const handleSubmitFormAddCard = new PopupWithForm(".popup-image", {
+const cardPopup = new PopupWithForm(".popup-image", {
   submitEvent: (formData) => {
     console.log(formData);
     const card = createCard(formData.text, formData.link);
-    renderItemFromObj.prependItem(card);
-    handleSubmitFormAddCard.close();
+    cardSection.prependItem(card);
+    cardPopup.close();
   },
 });
-handleSubmitFormAddCard.setEventListeners();
+cardPopup.setEventListeners();
 
 const editProfileValidator = new FormValidator(validationConfig, popupEditForm);
 editProfileValidator.enableValidation();
@@ -71,17 +69,17 @@ const addCardValidator = new FormValidator(
   popupHandleCardForm
 );
 addCardValidator.enableValidation();
-const renderItemFromObj = new Section(
+const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
       const card = createCard(item.name, item.link);
-      renderItemFromObj.setItem(card);
+      cardSection.setItem(card);
     },
   },
   allCards
 );
-renderItemFromObj.renderItem();
+cardSection.renderItem();
 
 
 
@@ -89,7 +87,7 @@ editButton.addEventListener("click", function () {
   const getInfo = userInfoEx.getUserInfo();
   popupEditNameInput.value = getInfo.name;
   popupEditJobInput.value = getInfo.job;
-  handleSumbutForm.open();
+  profilePopup.open();
 });
 
 editProfileValidator.enableValidation();
