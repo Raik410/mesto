@@ -81,8 +81,6 @@ const cardSection = new Section(
 );
 cardSection.renderItem();
 
-
-
 editButton.addEventListener("click", function () {
   const getInfo = userInfoEx.getUserInfo();
   popupEditNameInput.value = getInfo.name;
