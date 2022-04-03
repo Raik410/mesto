@@ -17,6 +17,24 @@ import {
 import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
+import { api } from '../scripts/components/Api.js';
+
+api.getProfile()
+  .then((res) => {
+    console.log(res);
+    userInfoEx.setUserInfo({name: res.name,
+      job: res.about});
+  })
+
+api.getInitialCards()
+  .then((cardList) => {
+    cardList.forEach((data) => {
+      const card = createCard(data.name, data.link);
+      cardSection.setItem(card)
+    })
+  })
+
+
 
 handleCardButton.addEventListener("click", function () {
   addCardValidator.toggleButtonState();
@@ -47,6 +65,7 @@ const profilePopup = new PopupWithForm(".popup-edit", {
       name: formData.username,
       job: formData.about,
     });
+    api.editProfile(formData.username, formData.about)
     profilePopup.close();
   },
 });
@@ -54,10 +73,12 @@ profilePopup.setEventListeners();
 
 const cardPopup = new PopupWithForm(".popup-image", {
   submitEvent: (formData) => {
-    console.log(formData);
-    const card = createCard(formData.text, formData.link);
-    cardSection.prependItem(card);
-    cardPopup.close();
+    api.addCard(formData.text, formData.link)
+      .then((res) => {
+        const card = createCard(res.name, res.link);
+        cardSection.prependItem(card);
+        cardPopup.close();
+      })
   },
 });
 cardPopup.setEventListeners();
@@ -71,7 +92,7 @@ const addCardValidator = new FormValidator(
 addCardValidator.enableValidation();
 const cardSection = new Section(
   {
-    items: initialCards,
+    items: [],
     renderer: (item) => {
       const card = createCard(item.name, item.link);
       cardSection.setItem(card);
