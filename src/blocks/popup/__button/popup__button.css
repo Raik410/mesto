@@ -6,6 +6,9 @@
   cursor: pointer;
   transition-property: background-color;
   border: 1px solid black;
+  color: white;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
 
 .popup__button:hover {

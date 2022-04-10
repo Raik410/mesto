@@ -41,6 +41,41 @@ export class Api {
     }).then(res => res.ok ? res.json() : Promise.reject(res.status))
     .catch(console.log)
   }
+
+  deleteCard(id) {
+    return fetch(`${this.baseUrl}/cards/${id}` , {
+      method: "DELETE",
+      headers: this.headers,
+    }).then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  deleteLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes` , {
+      method: "DELETE",
+      headers: this.headers,
+    }).then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  addLike(id) {
+    return fetch(`${this.baseUrl}/cards/${id}/likes` , {
+      method: "PUT",
+      headers: this.headers,
+    }).then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
+
+  resetAvatar(avatarPhoto) {
+    return fetch(`${this.baseUrl}/users/me/avatar` , {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: avatarPhoto,
+      })
+    }).then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .catch(console.log)
+  }
 }
 
 export const api = new Api({

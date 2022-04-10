@@ -1,5 +1,7 @@
 // Popups
 export const popupEdit = document.querySelector(".popup-edit");
+export const popupAvatar = document.querySelector('.popup-avatar')
+export const popupAvatarForm = popupAvatar.querySelector('.popup__form')
 // popupEditInputs
 export const popupEditNameInput = popupEdit.querySelector(".popup__input-name");
 export const popupEditJobInput = popupEdit.querySelector(
@@ -16,6 +18,7 @@ export const handleCardButton = profile.querySelector(".profile__button-full");
 // Cards
 export const sectionCards = document.querySelector(".cards");
 export const allCards = ".cards";
+export const avatar = document.querySelector('.profile__image');
 
 export const validationConfig = {
   formSelector: ".popup__form",

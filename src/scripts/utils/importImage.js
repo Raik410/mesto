@@ -10,6 +10,8 @@ export const HeartOn = new URL ('../../image/HeartOn.svg', import.meta.url);
 export const Logo = new URL ('../../image/Logo.svg', import.meta.url);
 export const LogoMobile = new URL ('../../image/LogoMobile.svg', import.meta.url);
 export const CryCat = new URL ('../../image/CryCat.png', import.meta.url);
+export const AvatarHover = new URL ('../../image/AvatarHover.svg', import.meta.url);
+
 
 export const images = [
   { name: 'BorderButtonAdd', image: BorderButtonAdd },
@@ -24,4 +26,5 @@ export const images = [
   { name: 'Logo', image: Logo },
   { name: 'LogoMobile', image: LogoMobile },
   { name: 'CryCat', image: CryCat },
+  { name: 'AvatarHover', image: AvatarHover },
 ]

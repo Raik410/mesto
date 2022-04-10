@@ -3,6 +3,8 @@
   height: 120px;
   background-size: cover;
   border-radius: 50%;
+  position: relative;
+  transition: opacity .2s linear;
 }
 
 @media screen and (max-width: 767px) {
@@ -11,4 +13,7 @@
   }
 }
 
+.profile__image:hover {
+  opacity: 0.2;
+}
 

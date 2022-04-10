@@ -16,11 +16,15 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  changeSubmitHandler(newSumbitHadnler) {
+    this._callBack = newSumbitHadnler;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._callBack(this._getInputValues());
+      this._callBack(this._getInputValues(), this._renderLoading);
     });
   }
 

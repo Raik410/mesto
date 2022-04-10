@@ -15,7 +15,9 @@
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img class="profile__image" src="<%=require('./image/CryCat.png')%>" alt="Жак-Ив кусто">
+          <div class="profile__image-wrapper">
+          <img class="profile__image" src="" alt="Жак-Ив кусто">
+        </div>
           <div class="profile__intro">
             <div class="profile__box">
               <h1 class="profile__title"></h1>
@@ -64,6 +66,18 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_type_delete-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button class="popup__botton-close" type="button">
+        </button>
+        <form class="popup__form" name="register" novalidate>
+          <button class="popup__button" type="submit">
+            <span class="popup__button-text">Да</span>
+          </button>
+          </form>
+      </div>
+    </div>
     <div class="popup popup-add-card">
       <div class="popup__container-image">
         <img class="popup__image" alt="картинка">
@@ -72,13 +86,30 @@
         </button>
       </div>
     </div>
+    <div class="popup popup-avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <button class="popup__botton-close" type="button">
+        </button>
+        <form class="popup__form" name="register" novalidate>
+          <input class="popup__input-name popup__input-name_type_user-job" placeholder="Ссылка на картинку" name="profileAvatar" type="url" required id="url-input">
+          <span class="popup__input-error url-input-error"></span>
+          <button class="popup__button" type="submit">
+            <span class="popup__button-text">Сохранить</span>
+          </button>
+        </form>
+      </div>
+    </div>
     <template class="template">
       <div class="card">
         <button class="card__button-card-detele"></button>
         <img class="card__image" alt="Карачаевск" src="./image/kirill-pershin-1088404-unsplash.jpg" width="100%">
         <div class="card__container">
           <h2 class="card__title">Карачаевск</h2>
+          <div class="card__heartContainer">
           <button class="card__heart" type="button"></button>
+          <span class="card__heartCounter">0</span>
+        </div>
         </div>
       </div>
     </template>
