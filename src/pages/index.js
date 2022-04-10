@@ -1,7 +1,6 @@
 import "./index.css";
 import { FormValidator } from "../scripts/components/FormValidator.js";
 import { Card } from "../scripts/components/Card.js";
-import { initialCards } from "../scripts/cards.js";
 import { Section } from "../scripts/components/Section.js";
 import {
   popupEditNameInput,
@@ -20,7 +19,6 @@ import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
 import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
 import { api } from "../scripts/components/Api.js";
-import { Popup } from "../scripts/components/Popup.js";
 
 let userId;
 
@@ -30,10 +28,8 @@ api.getProfile()
   userInfoEx.setUserInfo({ name: res.name, job: res.about });
   userInfoEx.setUserAvatar({ avatar: res.avatar})
   userId = res._id;
-  console.log(userId);
 });
 
-// ХОЧУ ПИЦЦЫ
 
 api.getInitialCards().then((cardList) => {
   cardList.forEach((data) => {
@@ -61,16 +57,17 @@ function handleCardClick(text, image) {
   imagePopup.open(text, image);
 }
 
-// function handleDeleteClick(_id) {
-//   console.log(_id);
-//   popupDelete.open();
-//   popupDelete.changeSubmitHandler(() => {
-//     api.deleteCard(_id).then((res) => {
-//       card._deleteCard();
-//       popupDelete.close();
-//     });
-//   });
-// }
+
+function handleDeleteClick(_id, card) {
+  console.log(_id);
+  popupDelete.open();
+  popupDelete.changeSubmitHandler(() => {
+    api.deleteCard(_id).then((res) => {
+      card._deleteCard();
+      popupDelete.close();
+    });
+  });
+}
 
 function createCard(text, image, likes, _id, userId, ownerId) {
   const card = new Card(
@@ -83,14 +80,7 @@ function createCard(text, image, likes, _id, userId, ownerId) {
     ".template",
     handleCardClick,
     () => {
-      console.log(_id);
-      popupDelete.open();
-      popupDelete.changeSubmitHandler(() => {
-        api.deleteCard(_id).then((res) => {
-          card._deleteCard();
-          popupDelete.close();
-        });
-      });
+      handleDeleteClick(_id, card)
     },
     () => {
       if (card.isLiked()) {
