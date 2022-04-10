@@ -36,7 +36,7 @@ export class Card {
     }
     const userHasLikeCard = this._likes.find(user => user._id === this._userId)
     if (userHasLikeCard) {
-      this._cardLike();
+      this.cardLike();
     }
     return this._element;
   }
@@ -50,13 +50,13 @@ export class Card {
   isLiked() {
     const userHasLikeCard = this._likes.find(user => user._id === this._userId)
 
-    return userHasLikeCard
+    return
   }
 
-  _cardLike() {
+  cardLike() {
     this._elementHeart.classList.toggle('card__heart_active');
   }
-  _deleteCard() {
+  deleteCard() {
     this._elementDeleteCard.closest('.card').remove();
   }
   // _openPopupCard() {

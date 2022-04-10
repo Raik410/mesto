@@ -22,28 +22,30 @@ import { api } from "../scripts/components/Api.js";
 
 let userId;
 
-api.getProfile()
-.then((res) => {
-  console.log(res)
-  userInfoEx.setUserInfo({ name: res.name, job: res.about });
-  userInfoEx.setUserAvatar({ avatar: res.avatar})
-  userId = res._id;
-});
+// api.getProfile()
+// .then((res) => {
+//   console.log(res)
+//   userInfoEx.setUserInfo({ name: res.name, job: res.about });
+//   userInfoEx.setUserAvatar({ avatar: res.avatar})
+//   userId = res._id;
+// });
 
+// На счет аватара
+// Я случайно в index.html поменял айдишник у инпута, потому что тесты не проходил
 
-api.getInitialCards().then((cardList) => {
-  cardList.forEach((data) => {
-    const card = createCard(
-      data.name,
-      data.link,
-      data.likes,
-      data._id,
-      userId,
-      data.owner._id
-    );
-    cardSection.setItem(card);
-  });
-});
+// api.getInitialCards().then((cardList) => {
+//   cardList.forEach((data) => {
+//     const card = createCard(
+//       data.name,
+//       data.link,
+//       data.likes,
+//       data._id,
+//       userId,
+//       data.owner._id
+//     );
+//     cardSection.setItem(card);
+//   });
+// });
 
 handleCardButton.addEventListener("click", function () {
   addCardValidator.toggleButtonState();
@@ -58,16 +60,16 @@ function handleCardClick(text, image) {
 }
 
 
-function handleDeleteClick(_id, card) {
-  console.log(_id);
-  popupDelete.open();
-  popupDelete.changeSubmitHandler(() => {
-    api.deleteCard(_id).then((res) => {
-      card._deleteCard();
-      popupDelete.close();
-    });
-  });
-}
+// function handleDeleteClick(_id) {
+//   console.log(_id);
+//   popupDelete.open();
+//   popupDelete.changeSubmitHandler(() => {
+//     api.deleteCard(_id).then((res) => {
+//       card.deleteCard();
+//       popupDelete.close();
+//     });
+//   });
+// }
 
 function createCard(text, image, likes, _id, userId, ownerId) {
   const card = new Card(
@@ -80,18 +82,25 @@ function createCard(text, image, likes, _id, userId, ownerId) {
     ".template",
     handleCardClick,
     () => {
-      handleDeleteClick(_id, card)
+      console.log(_id);
+      popupDelete.open();
+      popupDelete.changeSubmitHandler(() => {
+        api.deleteCard(_id).then((res) => {
+          card.deleteCard();
+          popupDelete.close();
+        });
+      });
     },
     () => {
       if (card.isLiked()) {
         api.deleteLike(_id).then((res) => {
           card.setLikes(res.likes);
-          card._cardLike();
+          card.cardLike();
         });
       } else {
         api.addLike(_id).then((res) => {
           card.setLikes(res.likes);
-          card._cardLike();
+          card.cardLike();
         });
       }
     }
@@ -101,6 +110,7 @@ function createCard(text, image, likes, _id, userId, ownerId) {
 }
 
 avatar.addEventListener("click", () => {
+  avatarPopupValidator.toggleButtonState()
   avatarPopup.open();
 });
 
@@ -122,7 +132,7 @@ const profilePopup = new PopupWithForm(".popup-edit", {
         });
         profilePopup.close();
       })
-      .finally( _ => loading(false))
+      .finally(_ => loading(false))
   },
 });
 
@@ -201,3 +211,42 @@ editButton.addEventListener("click", function () {
 
 editProfileValidator.enableValidation();
 addCardValidator.enableValidation();
+
+const getUserInfo = new Promise((resolve, reject) => {
+  resolve(api.getProfile())
+  reject('Ошибка')
+})
+  .catch(err => console.error(err))
+
+const getCards = new Promise((resolve, reject) => {
+  resolve(api.getInitialCards())
+  reject('Ошибка')
+})
+  .catch(err => console.error(err))
+
+Promise.all([getUserInfo, getCards])
+  .then((res) => {
+    const setUserInfo = res[0];
+    const getInitialCards = res[1]
+
+    console.log(res)
+    userInfoEx.setUserInfo({ name: setUserInfo.name, job: setUserInfo.about });
+    userInfoEx.setUserAvatar({ avatar: setUserInfo.avatar})
+    userId = setUserInfo._id;
+
+    return getInitialCards
+  })
+  .then((cardList) => {
+    cardList.forEach((data) => {
+      const card = createCard(
+        data.name,
+        data.link,
+        data.likes,
+        data._id,
+        userId,
+        data.owner._id
+      );
+      cardSection.setItem(card);
+    });
+  })
+
