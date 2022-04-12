@@ -50,7 +50,7 @@ export class Card {
   isLiked() {
     const userHasLikeCard = this._likes.find(user => user._id === this._userId)
 
-    return
+    return userHasLikeCard
   }
 
   cardLike() {

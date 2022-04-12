@@ -5,6 +5,8 @@ export class PopupWithForm extends Popup {
     this._callBack = submitEvent;
     this._form = this._popup.querySelector(".popup__form");
     this._inputList = this._form.querySelectorAll(".popup__input-name");
+    this._popupSubmitButton = this._popup.querySelector('.popup__button-text');
+    this._renderLoading = this._renderLoading.bind(this);
   }
 
   _getInputValues() {
@@ -18,6 +20,14 @@ export class PopupWithForm extends Popup {
 
   changeSubmitHandler(newSumbitHadnler) {
     this._callBack = newSumbitHadnler;
+  }
+
+  _renderLoading(toggle, textLoading = 'Сохранение...', text = 'Сохранить') {
+    if (toggle) {
+      this._popupSubmitButton.textContent = textLoading;
+    } else {
+      this._popupSubmitButton.textContent = text;
+    }
   }
 
   setEventListeners() {

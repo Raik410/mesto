@@ -4,7 +4,7 @@ export class Api {
     this.headers = headers;
   }
 
-  _checkResponse(path, method, {...body}) {
+  _makeRequest(path, method, {...body}) {
     return fetch(this.baseUrl + path, {
       method: method || 'GET',
       headers: this.headers,
@@ -18,15 +18,15 @@ export class Api {
   };
 
   getProfile() {
-    return this._checkResponse('/users/me')
+    return this._makeRequest('/users/me')
   }
 
   getInitialCards() {
-    return this._checkResponse('/cards')
+    return this._makeRequest('/cards')
   }
 
   editProfile(name, about) {
-    return this._checkResponse('/users/me', "PATCH", {
+    return this._makeRequest('/users/me', "PATCH", {
       body: JSON.stringify({
       name: name,
       about: about,
@@ -35,7 +35,7 @@ export class Api {
   }
 
   addCard(name, link) {
-    return this._checkResponse('/cards', "POST", {
+    return this._makeRequest('/cards', "POST", {
       body: JSON.stringify({
       name: name,
       link: link,
@@ -44,19 +44,19 @@ export class Api {
   }
 
   deleteCard(id) {
-    return this._checkResponse(`/cards/${id}`, "DELETE")
+    return this._makeRequest(`/cards/${id}`, "DELETE")
   }
 
   deleteLike(id) {
-    return this._checkResponse(`/cards/${id}/likes`, "DELETE")
+    return this._makeRequest(`/cards/${id}/likes`, "DELETE")
   }
 
   addLike(id) {
-    return this._checkResponse(`/cards/${id}/likes`, "PUT")
+    return this._makeRequest(`/cards/${id}/likes`, "PUT")
   }
 
   resetAvatar(avatarPhoto) {
-    return this._checkResponse('/users/me/avatar', "PATCH", {
+    return this._makeRequest('/users/me/avatar', "PATCH", {
       body: JSON.stringify({
       avatar: avatarPhoto,
     })
