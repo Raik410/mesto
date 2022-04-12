@@ -20,6 +20,8 @@ import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
 import { api } from "../scripts/components/Api.js";
 
+// У меня к вам личный вопрос, эта проектная для меня супер-мега хардовая была и я смог её сделать только с помощью вебинара, мне тяжело писать функции чисто своими методами и логикой, хз может мышления не хватает или опыта, но вот хотел спросить нормально ли это и качается ли навык мышления с опытом?
+
 let userId;
 
 handleCardButton.addEventListener("click", function () {
