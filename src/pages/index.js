@@ -20,7 +20,7 @@ import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
 import { UserInfo } from "../scripts/components/UserInfo.js";
 import { api } from "../scripts/components/Api.js";
 
-// У меня к вам личный вопрос, эта проектная для меня супер-мега хардовая была и я смог её сделать только с помощью вебинара, мне тяжело писать функции чисто своими методами и логикой, хз может мышления не хватает или опыта, но вот хотел спросить нормально ли это и качается ли навык мышления с опытом?
+// Спасибо <3
 
 let userId;
 
@@ -196,20 +196,17 @@ addCardValidator.enableValidation();
 
 Promise.all([api.getProfile(), api.getInitialCards()])
   .then((res) => {
-    const setUserInfo = res[0];
-    const getInitialCards = res[1];
+    const userInfo = res[0];
+    const initialCards = res[1];
 
     console.log(res);
-    userInfoEx.setUserInfo({ name: setUserInfo.name, job: setUserInfo.about });
-    userInfoEx.setUserAvatar({ avatar: setUserInfo.avatar });
-    userId = setUserInfo._id;
+    userInfoEx.setUserInfo({ name: userInfo.name, job: userInfo.about });
+    userInfoEx.setUserAvatar({ avatar: userInfo.avatar });
+    userId = userInfo._id;
 
-    return getInitialCards;
+    return initialCards;
   })
-  .catch((err) => console.log(`Ошибка: ${err}`))
   .then((res) => {
-    res.forEach((item) => {
-      cardSection.renderItem([item]);
-    });
+      cardSection.renderItems(res);
   })
   .catch((err) => console.log(`Ошибка: ${err}`));

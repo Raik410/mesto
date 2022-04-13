@@ -10,7 +10,7 @@ export class Section {
   clear() {
     this._container.innerHTML = "";
   }
-  renderItem(items) {
+  renderItems(items) {
     items.forEach((item) => {
       this._renderer(item);
     });
